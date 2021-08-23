@@ -1,25 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instagram Clone</title>
-</head>
-<body>
+@layout('layouts/app')
 
-  <main>
-    <div>
-      <h1> It Works! </h1>
-      @if(auth.isAuthenticated)
-      <h1> {{auth.user.name}} </h1>
-      <form action="/logout" method="post">
-        {{ csrfField() }}
-        <button type="submit">LogOut</button>
-      </form>
-      @else 
-      <a href="/login">Login</a>
-      @endif
-    </div>
-  </main>
-</body>
-</html>
+@section('content')
+    <section>
+      <div>
+        <h1> It Works! </h1>
+        @if(auth.isAuthenticated)
+        <h1> {{auth.user.name}} </h1>
+        <form action="/logout" method="post">
+          {{ csrfField() }}
+          <button type="submit">LogOut</button>
+        </form>
+        @else 
+        <a href="/login">Login</a>
+        @endif
+      </div>
+  </section>
+@endsection
