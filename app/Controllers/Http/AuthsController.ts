@@ -2,9 +2,9 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
 
-export default class SignUpsController {
-    public async index({ request, response }: HttpContextContract) {
-        
+export default class AuthsController {
+    public async signup({ request, response }: HttpContextContract) {
+
         const req = await request.validate({
             schema: schema.create({
                 name: schema.string(),
@@ -14,15 +14,14 @@ export default class SignUpsController {
             messages: {
                 "name.required": "Name is required to sign up",
                 "email.required": "Email is required to sign up",
-               
                 "password.required": "Password is required to sign up",
             },
         });
 
         // console.log('yee', req)
-       
+
         const user = new User();
-        
+
         user.name = req.name
         user.email = req.email
         user.password = req.password
@@ -31,5 +30,23 @@ export default class SignUpsController {
 
         return response.redirect('/')
 
+    }
+
+    public async login({ request, response }: HttpContextContract) {
+        const req = await request.validate({
+            schema: schema.create({
+                email: schema.string({}, [rules.email()]),
+                password: schema.string({}, [rules.minLength(8)]),
+            }),
+            messages: {
+                "email.required": "Email is required to sign up",
+                "password.required": "Password is required to sign up",
+                "password.minLength": "Password must be atleast 8 cara",
+            },
+        })
+
+        const user = await User.findByOrFail('email', req.email)
+
+        return user
     }
 }
