@@ -32,7 +32,7 @@ export default class AuthsController {
 
     }
 
-    public async login({ request, response }: HttpContextContract) {
+    public async login({ request, response, auth }: HttpContextContract) {
         const req = await request.validate({
             schema: schema.create({
                 email: schema.string({}, [rules.email()]),
@@ -45,8 +45,13 @@ export default class AuthsController {
             },
         })
 
-        const user = await User.findByOrFail('email', req.email)
+        // const user = await User.findByOrFail('email', req.email)
 
-        return user
+        const email = req.email
+        const password = req.password
+
+        await auth.attempt(email, password)
+
+        return response.redirect('/profile')
     }
 }
