@@ -8,4 +8,7 @@ Enjoy 😊 & Happy Coding 💛
 ✅ Authentification
 
 ☑ Login + Signin up with Facebook, Google and Github
+
 ☑ Dark Mode
+
+☑ Email Verification
