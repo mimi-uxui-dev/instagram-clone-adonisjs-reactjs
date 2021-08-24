@@ -1,6 +1,12 @@
 @layout('layouts/app')
 
 @section('content')
-    <h1>Profile</h1>
-    {{ auth.user.name }}
+    <h1>Profile of {{ auth.user.name }}</h1>
+    
+    @if(auth.user.email_varified_at === null)
+    <form action="/verify-email" method="post">
+        {{ csrfField() }}
+        <input type="submit" value='Resend' >
+    </form>
+    @endif
 @endsection

@@ -23,14 +23,14 @@
                         <label for="email"></label>
                         <input placeholder="email" type="email" id="email" name='email' class="w-full bg-gray-200 rounded my-1 p-1.5 border" >
                         @if(flashMessages.has('errors.email'))
-                        <small>{{ flashMessages.get('errors.email') }}</small>
+                            <small>{{ flashMessages.get('errors.email') }}</small>
                         @endif
                     </div> 
                     <div>
                         <label for="password"></label>
                         <input placeholder="Password" type="password" id="password" name='password' class="w-full bg-gray-200 rounded my-1 p-1.5 border">
                         @if(flashMessages.has('errors.password'))
-                        <small>{{ flashMessages.get('errors.password') }}</small>
+                            <small>{{ flashMessages.get('errors.password') }}</small>
                         @endif
                     </div>
                     <div>
@@ -41,15 +41,12 @@
                         <button type="submit" class="w-full bg-blue-600 py-1.5 mt-10 mb-5 text-white font-bold" value="Sign Up">Sign Up</button>
                     </div>
                 </form>
-                <p>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
+                <p>By signing up, you agree to our Terms , Data Policy and Cookies Policy.</p>
             </article>
         
-
-        <article class="border flex flex-col justify-center text-center py-10 my-3 bg-white">
-            <p>Have an account? <a href="/login" class="text-blue-600">Log in</a></p>
-        </article>
-
-        
-
+            <article class="border flex flex-col justify-center text-center py-10 my-3 bg-white">
+                <p>Have an account? <a href="/login" class="text-blue-600">Log in</a></p>
+            </article>
+            
     </section>
 @endsection

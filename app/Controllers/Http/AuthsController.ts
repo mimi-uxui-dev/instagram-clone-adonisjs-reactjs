@@ -1,6 +1,8 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
+import Mail from '@ioc:Adonis/Addons/Mail'
+
 
 export default class AuthsController {
     public async signup({ request, response }: HttpContextContract) {
@@ -18,15 +20,17 @@ export default class AuthsController {
             },
         });
 
-        // console.log('yee', req)
-
+        // Create & save the user to DB
         const user = new User();
-
+        
         user.name = req.name
         user.email = req.email
         user.password = req.password
-
+        
         await user.save()
+        
+        // Send verification email
+        user?.sendVerificationEmail()
 
         return response.redirect('/')
 
