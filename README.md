@@ -2,8 +2,8 @@
 This is a clone of instgram, using ReacJS for Front-end, AdonisJS for Backend & styling using TailwinCss.
 Enjoy 😊 & Happy Coding 💛
 
-### Features 
-☑ TailwindCSS
+### What's in it 
+✅ TailwindCSS
 
 ✅ Authentification
 
@@ -11,4 +11,4 @@ Enjoy 😊 & Happy Coding 💛
 
 ☑ Dark Mode
 
-☑ Email Verification
+✅ Email Verification
