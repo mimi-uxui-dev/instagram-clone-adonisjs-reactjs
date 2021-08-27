@@ -16,6 +16,15 @@ export default class User extends BaseModel {
   @column()
   public email: string
 
+  @column()
+  public username: string
+
+  @column()
+  public bio: string
+
+  @column()
+  public avatar: string
+
   @column.dateTime()
   public email_varified_at: DateTime
 

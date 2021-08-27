@@ -1,7 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
-import Mail from '@ioc:Adonis/Addons/Mail'
 
 
 export default class AuthsController {
@@ -12,11 +11,13 @@ export default class AuthsController {
                 name: schema.string(),
                 email: schema.string({}, [rules.email()]),
                 password: schema.string({}),
+                username: schema.string({}),
             }),
             messages: {
                 "name.required": "Name is required to sign up",
                 "email.required": "Email is required to sign up",
-                "password.required": "Password is required to sign up",
+                "password.required": "password is required to sign up",
+                "username.required": "username is required to sign up",
             },
         });
 
@@ -26,6 +27,7 @@ export default class AuthsController {
         user.name = req.name
         user.email = req.email
         user.password = req.password
+        user.username = req.username
         
         await user.save()
         
