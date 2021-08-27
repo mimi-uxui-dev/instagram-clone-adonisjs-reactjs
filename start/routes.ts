@@ -2,10 +2,10 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.on('/').render('welcome')
 
-Route.on('/signup').render('auth/signup')
+Route.on('/signup').render('auth/signup').middleware('guest')
 Route.post('/signup', 'AuthsController.signup')
 
-Route.on('/login').render('auth/login')
+Route.on('/login').render('auth/login').middleware('guest')
 Route.post('/login', 'AuthsController.login')
 
 Route.on('/profile').render('profile').middleware('auth')

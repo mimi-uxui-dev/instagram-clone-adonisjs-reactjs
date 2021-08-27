@@ -6,6 +6,7 @@ import Env from '@ioc:Adonis/Core/Env'
 import Route from '@ioc:Adonis/Core/Route'
 
 export default class User extends BaseModel {
+  
   @column({ isPrimary: true })
   public id: number
 
