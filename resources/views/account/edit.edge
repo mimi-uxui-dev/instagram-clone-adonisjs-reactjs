@@ -1,0 +1,27 @@
+@layout('layouts/app')
+
+@section('content')
+    <h1 class="font-bold text-2xl py-2 my-3">Update Your Details</h1>
+    <form action="/signup" method="post" enctype="multipart/form-data">
+        {{ csrfField() }}
+        <div>
+            <label for="bio">
+                <input 
+                    placeholder="Bio" 
+                    type="text" 
+                    id="bio" 
+                    name='bio' 
+                    class="w-full bg-gray-200 rounded my-1 p-1.5 border"
+                >
+                <input  
+                    type="file" 
+                    name='avatar' 
+                    class="w-full bg-gray-200 rounded my-1 p-1.5 border"
+                >
+            </label>
+        </div>
+        <div class="mt-1">
+            <button type="submit" class="bg-blue-600 py-1.5 px-4 mt-2 mb-2 text-white font-bold">Update</button>
+        </div>
+    </form>
+@endsection

@@ -56,9 +56,9 @@ export default class AuthsController {
         const email = req.email
         const password = req.password
 
-        await auth.attempt(email, password)
+        const user = await auth.attempt(email, password)
 
-        return response.redirect('/profile')
+        return response.redirect(`/${user.username}`)
     }
 
     public async logout( {auth, response} : HttpContextContract ) {
