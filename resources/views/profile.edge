@@ -1,12 +1,38 @@
 @layout('layouts/app')
 
 @section('content')
-    <h1>Profile of {{ auth.user.name }}</h1>
-    
-    @if(auth.user.email_varified_at === null)
-    <form action="/verify-email" method="post">
-        {{ csrfField() }}
-        <input type="submit" value='Resend' >
-    </form>
-    @endif
+<div class="mt-10 flex justify-between flex-wrap w-full">
+    <div class="w-4/12 flex justify-center">
+        <img src="" class="w-40 h-40 rounded-full border" alt="">
+    </div>
+    <div class="w-8/12">
+        <div class="flex">
+            <h1 class="text-2xl tracking-wide">{{ user.name }}</h1>
+            <a href="/accounts/edit" class="border border-gray-400 mx-4 rounded px-2 pt-1 font-semibold">Edit Profile</a>
+        </div>
+
+        <div class="flex my-5">
+            <p class="mr-8"><span class="font-semibold">{{user.posts.length}}</span> posts</p>
+            <p class="mr-8"><span class="font-semibold">{{followers}}</span> followers</p>
+            <p class="mr-8"><span class="font-semibold">{{user.followings.length}}</span> followings</p>
+        </div>
+
+        <div class="flex my-5">
+            <p class="mr-8">
+                {{user.details}}
+            </p>
+        </div>
+    </div>
+
+    <section class="border-t w-full mt-20">
+        <h2 class="text-center text-sm p-2">POSTS
+           <a href="/posts/create"><i class="fas fa-plus"></i></a>
+        </h2>
+        <article class="grid grid-cols-3 gap-10 px-1">
+            @each(post in user.posts)
+        <img src="{{post.image}}" class="w-64 h-48 border" alt="">
+            @endeach
+        </article>
+    </section>
+</div>
 @endsection
