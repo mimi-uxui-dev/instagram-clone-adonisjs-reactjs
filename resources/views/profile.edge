@@ -7,31 +7,36 @@
     </div>
     <div class="w-8/12">
         <div class="flex">
-            <h1 class="text-2xl tracking-wide">{{ user.name }}</h1>
+            <h1 class="text-2xl tracking-wide">Millled-FAKE</h1>
             <a href="/accounts/edit" class="border border-gray-400 mx-4 rounded px-2 pt-1 font-semibold">Edit Profile</a>
         </div>
 
         <div class="flex my-5">
-            <p class="mr-8"><span class="font-semibold">{{user.posts.length}}</span> posts</p>
-            <p class="mr-8"><span class="font-semibold">{{followers}}</span> followers</p>
-            <p class="mr-8"><span class="font-semibold">{{user.followings.length}}</span> followings</p>
+            <p class="mr-8"><span class="font-semibold">123</span> posts</p>
+            <p class="mr-8"><span class="font-semibold">55</span> followers</p>
+            <p class="mr-8"><span class="font-semibold">55</span> followings</p>
         </div>
 
         <div class="flex my-5">
             <p class="mr-8">
-                {{user.details}}
+                My bio shoudl be here.
             </p>
         </div>
     </div>
 
     <section class="border-t w-full mt-20">
         <h2 class="text-center text-sm p-2">POSTS
-           <a href="/posts/create"><i class="fas fa-plus"></i></a>
+           <a href="/posts/create">
+                <i class="fas fa-plus"></i>
+            </a>
         </h2>
         <article class="grid grid-cols-3 gap-10 px-1">
-            @each(post in user.posts)
-        <img src="{{post.image}}" class="w-64 h-48 border" alt="">
-            @endeach
+            <img src="" class="w-64 h-48 border" alt="">
+            <img src="" class="w-64 h-48 border" alt="">
+            <img src="" class="w-64 h-48 border" alt="">
+            <img src="" class="w-64 h-48 border" alt="">
+            <img src="" class="w-64 h-48 border" alt="">
+            <img src="" class="w-64 h-48 border" alt="">
         </article>
     </section>
 </div>
