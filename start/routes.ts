@@ -20,4 +20,5 @@ Route.get('/verify-email/:email','EmailVerificationsController.store').as('verif
 
 // User Profile
 Route.get('/account/edit', 'ProfilesController.edit').middleware('auth')
+Route.post('/account/edit', 'ProfilesController.update').middleware('auth')
 Route.get('/:username', 'ProfilesController.index').middleware('auth') // this is a dynamic route, it should be last

@@ -3,7 +3,7 @@
 @section('content')
 <div class="mt-10 flex justify-between flex-wrap w-full">
     <div class="w-4/12 flex justify-center">
-        <img src="" class="w-40 h-40 rounded-full border" alt="">
+        <img src={{auth.user.avatar}} class="w-40 h-40 rounded-full border object-cover" alt="">
     </div>
     <div class="w-8/12">
         <div class="flex">
@@ -18,9 +18,7 @@
         </div>
 
         <div class="flex my-5">
-            <p class="mr-8">
-                My bio shoudl be here.
-            </p>
+            <p class="mr-8">{{ auth.user.bio }}</p>
         </div>
     </div>
 
