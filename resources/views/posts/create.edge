@@ -1,0 +1,30 @@
+@layout('layouts/app')
+
+@section('content')
+    <h1 class="font-bold text-2xl py-2 my-3">Create New Post</h1>
+    <form action="/posts/create" method="post" enctype="multipart/form-data">
+        {{ csrfField() }}
+        <div>
+            <label for="caption">
+                <p>Caption</p>
+                <textarea 
+                    id="caption" 
+                    name='caption' 
+                    rows="3"
+                    class="w-full bg-gray-200 rounded my-1 p-1.5 border"
+                    
+                ></textarea>
+                <br />
+                <p>Upload photo</p>
+                <input  
+                    type="file" 
+                    name='postImage' 
+                    class="w-full bg-gray-200 rounded my-1 p-1.5 border"
+                >
+            </label>
+        </div>
+        <div class="mt-1">
+            <button type="submit" class="bg-blue-600 py-1.5 px-4 mt-2 mb-2 text-white font-bold">Upload</button>
+        </div>
+    </form>
+@endsection

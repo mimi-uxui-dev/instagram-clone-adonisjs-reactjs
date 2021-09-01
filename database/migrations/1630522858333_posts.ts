@@ -16,4 +16,5 @@ export default class Posts extends BaseSchema {
   public async down () {
     this.schema.dropTable(this.tableName)
   }
+  
 }
