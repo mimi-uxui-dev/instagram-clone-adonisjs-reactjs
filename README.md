@@ -11,4 +11,6 @@ Enjoy 😊 & Happy Coding 💛
 
 ☑ Dark Mode
 
+☑ Upload Multiple Images & Display them in a Carousel 
+
 ✅ Email Verification
