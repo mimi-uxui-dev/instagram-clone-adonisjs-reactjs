@@ -1,6 +1,7 @@
 import Application from '@ioc:Adonis/Core/Application'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Post from 'App/Models/Post'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
 export default class PostsController {
   public async index({ }: HttpContextContract) {
@@ -10,28 +11,37 @@ export default class PostsController {
     return view.render('posts/create')
   }
 
-  public async store({ auth, request,response }: HttpContextContract) {
-    const image = request.file('image')
+  public async store({ auth, request, response }: HttpContextContract) {
+    const req = await request.validate({
+      schema: schema.create({
+        caption: schema.string(),
+        image: schema.file({
+          size: '2mb',
+          extnames: ['jpg', 'png', 'jpeg']
+        })
+      }),
+      messages: {
+        "caption.required": "Caption is required to sign up",
+        "image.required": "Image is required to sign up",
+      },
+    });
 
-    if (image) {
-      const imageName = new Date().getTime().toString() + `.${image?.extname}`
+    const image = req.image
+    const post = new Post()
 
-      await image?.move(Application.publicPath('images'), {
-        name: imageName,
-      })
+    post.user_id = auth.user.id
+    post.caption = req.caption
 
-      const post = new Post()
+    const imageName = new Date().getTime().toString() + `.${req.image?.extname}`
 
-      post.image = `images/${imageName}`
-      post.caption = request.input('caption')
-      post.user_id = auth.user.id
+    await image?.move(Application.publicPath('images'), {
+      name: imageName,
+    })
 
-      post.save()
-      
-      return response.redirect(`/${auth.user?.username}`)
-    }
+    post.image = `images/${imageName}`
+    post.save()
 
-
+    return response.redirect(`/${auth.user?.username}`)
   }
 
   public async show({ }: HttpContextContract) {
