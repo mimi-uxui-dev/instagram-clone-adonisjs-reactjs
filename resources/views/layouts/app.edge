@@ -21,8 +21,16 @@
                     <a href="/">Instagram Clone</a>
                 </h1>
 
+                @if(auth.isAuthenticated && auth.user.email_varified_at === null)
+                    <form action="/verify-email" method="POST">
+                        <input type="submit" value="Resend Verification Email">
+                    </form>
+                @endif
+
                 <div >
-                    <img src="" class="h-8 w-8 rounded-full border object-cover" alt="profile">
+                    @if(auth.isAuthenticated)
+                        <img src={{auth.user.avatar}} class="h-8 w-8 rounded-full border object-cover" alt="profile">
+                    @endif
                 </div>
 
             </div>
