@@ -3,11 +3,11 @@
 @section('content')
 <div class="mt-10 flex justify-between flex-wrap w-full">
     <div class="w-4/12 flex justify-center">
-        <img src={{auth.user.avatar}} class="w-40 h-40 rounded-full border object-cover" alt="">
+        <img src={{user.avatar}} class="w-40 h-40 rounded-full border object-cover" alt="">
     </div>
     <div class="w-8/12">
         <div class="flex">
-            <h1 class="text-2xl tracking-wide">{{auth.user.username}}</h1>
+            <h1 class="text-2xl tracking-wide">{{user.username}}</h1>
             <a href="/account/edit" class="border border-gray-400 mx-4 rounded px-2 pt-1 font-semibold">Edit Profile</a>
         </div>
 
@@ -18,19 +18,16 @@
         </div>
 
         <div class="flex my-5">
-            <p class="mr-8">{{ auth.user.bio }}</p>
+            <p class="mr-8">{{ user.bio }}</p>
         </div>
     </div>
 
     <section class="border-t w-full mt-20">
         <h2 class="text-center text-sm p-2">POSTS &nbsp;<a href="/posts/create"><i class="fas fa-plus"></i></a></h2>
         <article class="grid grid-cols-3 gap-10 px-1">
-            <img src="" class="w-64 h-64 border" alt="">
-            <img src="" class="w-64 h-64 border" alt="">
-            <img src="" class="w-64 h-64 border" alt="">
-            <img src="" class="w-64 h-64 border" alt="">
-            <img src="" class="w-64 h-64 border" alt=""> 
-            <img src="" class="w-64 h-64 border" alt="">
+            @each(post in user.posts)
+                <img src={{post.image === null ? "123" : post.image}} class="w-64 h-64 border object-cover" alt="">
+            @endeach
         </article>
     </section>
 </div>

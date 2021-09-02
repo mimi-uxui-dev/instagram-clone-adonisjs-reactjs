@@ -13,9 +13,6 @@
                     rows="3"
                     class="w-full bg-gray-200 rounded my-1 p-1.5 border"
                 ></textarea>
-                @if(flashMessages.has('errors.caption'))
-                <small>{{ flashMessages.get('errors.caption') }}</small>
-                @endif
                 <br />
                 <p>Upload photo</p>
                 <input  
@@ -24,7 +21,7 @@
                     class="w-full bg-gray-200 rounded my-1 p-1.5 border"
                 >
                 @if(flashMessages.has('errors.image'))
-                <small>{{ flashMessages.get('errors.image') }}</small>
+                    <small>{{ flashMessages.get('errors.image') }}</small>
                 @endif
             </label>
         </div>

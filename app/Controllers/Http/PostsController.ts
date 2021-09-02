@@ -1,7 +1,7 @@
 import Application from '@ioc:Adonis/Core/Application'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Post from 'App/Models/Post'
-import { schema, rules } from '@ioc:Adonis/Core/Validator'
+import { schema } from '@ioc:Adonis/Core/Validator'
 
 export default class PostsController {
   public async index({ }: HttpContextContract) {
@@ -14,14 +14,12 @@ export default class PostsController {
   public async store({ auth, request, response }: HttpContextContract) {
     const req = await request.validate({
       schema: schema.create({
-        caption: schema.string(),
         image: schema.file({
           size: '2mb',
           extnames: ['jpg', 'png', 'jpeg']
         })
       }),
       messages: {
-        "caption.required": "Caption is required to sign up",
         "image.required": "Image is required to sign up",
       },
     });
@@ -29,7 +27,7 @@ export default class PostsController {
     const image = req.image
     const post = new Post()
 
-    post.user_id = auth.user.id
+    post.userId = auth.user.id
     post.caption = req.caption
 
     const imageName = new Date().getTime().toString() + `.${req.image?.extname}`
