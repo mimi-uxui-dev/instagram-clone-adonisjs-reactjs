@@ -1,7 +1,8 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 // HOME
-Route.on('/').render('welcome')
+// Route.on('/').render('welcome')
+Route.get('/', 'HomeController.index')
 
 // SignUp
 Route.on('/signup').render('auth/signup').middleware('guest')

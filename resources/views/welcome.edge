@@ -1,18 +1,28 @@
 @layout('layouts/app')
 
 @section('content')
-    <section>
-      <div>
-        <h1> It Works! </h1>
-        @if(auth.isAuthenticated)
-        <h1> {{auth.user.name}} </h1>
-        <form action="/logout" method="post">
-          {{ csrfField() }}
-          <button type="submit">LogOut</button>
-        </form>
-        @else 
-        <a href="/login">Login</a>
-        @endif
+  @each(post in posts)
+    <div class="border-2 bg-white w-9/12 my-6">
+      <div class="m-2 flex justify-between" >
+        <a href="/{{post.user && post.user.username}}" class="flex">
+          <img src={{post.user && post.user.avatar}} class="h-10 w-10 rounded-full border" alt="">
+          <h6 class="mx-3 mt-2 font-semibold">{{ post.user && post.user.username }}</h6>
+        </a>
+        
+        <p class="font-semibold mx-3 tracking-wider">...</p>
       </div>
-  </section>
+      <img src="{{post.image}}" width="100%" alt="">
+      <p>{{post.caption}}</p>
+    </div>
+  @endeach
+    
+  @if(auth.isAuthenticated)
+    <h1> {{auth.user.name}} </h1>
+      <form action="/logout" method="post">
+        {{ csrfField() }}
+        <button type="submit">LogOut</button>
+      </form>
+  @else 
+    <a href="/login">Login</a>
+  @endif
 @endsection

@@ -9,7 +9,7 @@ export default class ProfilesController {
         const user = await User.findBy('username', username)
 
         // this will create 10 users with 5 posts each
-        await UserFactory.with('posts', 5).createMany(10)
+        // await UserFactory.with('posts', 5).createMany(10)
 
         if(!user){
             return view.render('errors.not-found.edge')
