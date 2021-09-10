@@ -8,23 +8,26 @@
     <div class="w-8/12">
         <div class="flex">
             <h1 class="text-2xl tracking-wide">{{user.username}}</h1>
-            
-            <a href="/account/edit" class="border border-gray-400 mx-4 rounded px-2 pt-1 font-semibold">Edit Profile</a>
+            @if(auth.user.id === user.id)
+                <a href="/account/edit" class="border border-gray-400 mx-4 rounded px-2 pt-1 font-semibold">Edit Profile</a>
+            @endif
         </div>
-
         <div class="flex my-5">
             <p class="mr-8"><span class="font-semibold">123</span> posts</p>
             <p class="mr-8"><span class="font-semibold">55</span> followers</p>
             <p class="mr-8"><span class="font-semibold">55</span> followings</p>
         </div>
-
         <div class="flex my-5">
             <p class="mr-8">{{ user.bio }}</p>
         </div>
     </div>
 
     <section class="border-t w-full mt-20">
-        <h2 class="text-center text-sm p-2">POSTS &nbsp;<a href="/posts/create"><i class="fas fa-plus"></i></a></h2>
+        <h2 class="text-center text-sm p-2">POSTS 
+            @if(auth.user.id === user.id)
+                &nbsp;<a href="/posts/create"><i class="fas fa-plus"></i></a>
+            @endif
+        </h2>
         <article class="grid grid-cols-3 gap-10 px-1">
             @each(post in user.posts)
                 <img src={{post.image === null ? "123" : post.image}} class="w-64 h-64 border object-cover" alt="">

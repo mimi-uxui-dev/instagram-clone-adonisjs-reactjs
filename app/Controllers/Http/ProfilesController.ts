@@ -12,7 +12,7 @@ export default class ProfilesController {
         }
 
         await user.preload('posts')
-
+        
         return view.render('profile', {user})
     }
 
