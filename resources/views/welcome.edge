@@ -11,8 +11,12 @@
         
         <p class="font-semibold mx-3 tracking-wider">...</p>
       </div>
+      
       <img src="{{post.image}}" width="100%" alt="">
-      <p>{{post.caption}}</p>
+      <div class="p-4">
+        <p class="mx-3"> <span class="font-semibold"> {{ post.user && post.user.username}} </span> {{post.caption}}</p>
+        <small class="text-gray-500 mx-3"> {{post.createdAt.toFormat('yyyy-MM-dd mm:ss')}} </small>
+      </div>
     </div>
   @endeach
     
