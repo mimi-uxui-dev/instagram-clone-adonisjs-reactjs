@@ -1,11 +1,15 @@
 import Application from '@ioc:Adonis/Core/Application'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
+import { UserFactory } from 'Database/factories'
 
 export default class ProfilesController {
     public async index({ view, params} : HttpContextContract){
         const username = params.username
         const user = await User.findBy('username', username)
+
+        // this will create 10 users with 5 posts each
+        await UserFactory.with('posts', 5).createMany(10)
 
         if(!user){
             return view.render('errors.not-found.edge')

@@ -17,7 +17,7 @@ export const UserFactory = Factory.define(User, ({ faker}) => {
 
 export const PostFactory = Factory.define(Post, ({ faker}) => {
     return {
-        caption: faker.lorem.paragraph(), 
+        caption: faker.lorem.lines(1), 
         image: faker.image.animals(),  
     }
 }).relation('user', () => UserFactory).build()
