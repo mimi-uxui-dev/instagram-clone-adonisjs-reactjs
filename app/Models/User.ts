@@ -1,10 +1,11 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { BaseModel, column, beforeSave, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, beforeSave, hasMany, HasMany, Has } from '@ioc:Adonis/Lucid/Orm'
 import Mail from '@ioc:Adonis/Addons/Mail'
 import Env from '@ioc:Adonis/Core/Env'
 import Route from '@ioc:Adonis/Core/Route'
 import Post from './Post'
+import Following from './Following'
 
 export default class User extends BaseModel {
   
@@ -36,6 +37,8 @@ export default class User extends BaseModel {
   @hasMany(() => Post)
   public posts: HasMany<typeof Post>
 
+  @hasMany(() => Following)
+  public followings: HasMany<typeof Following>
 
   @beforeSave()
   public static async hashPassword(user: User) {

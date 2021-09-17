@@ -4,7 +4,7 @@ import User from 'App/Models/User'
 import { UserFactory } from 'Database/factories'
 
 export default class ProfilesController {
-    public async index({ view, params} : HttpContextContract){
+    public async index({ view, params, auth} : HttpContextContract){
         const username = params.username
         const user = await User.findBy('username', username)
 
@@ -14,9 +14,10 @@ export default class ProfilesController {
         if(!user){
             return view.render('errors.not-found.edge')
         }
-
-        await user.preload('posts')
         
+        await user.preload('posts')
+        await auth.user.preload('followings')
+        // return auth.user
         return view.render('profile', {user})
     }
 
