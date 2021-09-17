@@ -40,6 +40,12 @@ export default class User extends BaseModel {
   @hasMany(() => Following)
   public followings: HasMany<typeof Following>
 
+  public async followers(){
+    const followers = await Following.query().where('following_id', this.id)
+    return followers.length
+  }
+
+
   @beforeSave()
   public static async hashPassword(user: User) {
     if(user.$dirty.password){

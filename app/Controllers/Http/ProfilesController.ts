@@ -18,7 +18,10 @@ export default class ProfilesController {
         await user.preload('posts')
         await auth.user.preload('followings')
         // return auth.user
-        return view.render('profile', {user})
+
+        const followers = await auth.user?.followers()
+
+        return view.render('profile', {user, followers})
     }
 
     public async edit({ view} : HttpContextContract){
