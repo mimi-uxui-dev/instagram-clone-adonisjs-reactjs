@@ -11,8 +11,7 @@
             @if(auth.user.id === user.id)
                 <a href="/account/edit" class="border border-gray-400 mx-4 rounded px-2 pt-1 font-semibold">Edit Profile</a>
             @else 
-                @if(auth.user.followings.map(f => f.followingId === user.id) )
-                    
+                @if(auth.user.followings.map(f => f.followingId).includes(user.id) )
                     <form action="{{ `/follow/${user.id}?_method=delete` }}" method="POST">
                         {{ csrfField() }}
                         <button type="submit" class="bg-blue-500 mx-4 rounded px-3 text-white font-semibold">UnFollow</a>
@@ -23,8 +22,6 @@
                         <button type="submit" class="bg-blue-500 mx-4 rounded px-3 text-white font-semibold">Follow</a>
                     </form>
                 @endif
-
-                
             @endif
         </div>
         <div class="flex my-5">

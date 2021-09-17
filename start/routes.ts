@@ -17,6 +17,7 @@ Route.post('/logout', 'AuthsController.logout')
 
 // Follow
 Route.post('/follow/:userId', 'FollowsController.store').middleware('auth')
+Route.delete('/follow/:userId', 'FollowsController.destroy').middleware('auth')
 
 // Email Verificatio
 Route.post('/verify-email','EmailVerificationsController.index').middleware('auth') 
