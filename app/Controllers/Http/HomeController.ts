@@ -2,7 +2,6 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Post from 'App/Models/Post'
 
 export default class HomeController {
-
     public async index({view, auth}:HttpContextContract){
         await auth.user?.preload('followings')
         
@@ -12,6 +11,9 @@ export default class HomeController {
 
         const posts = await Post.query().whereIn('user_id', userIds).preload("user")
 
+        ('user').orderBy('created_at', 'desc')
+
         return view.render('welcome', { posts })
+        
     }
 }
