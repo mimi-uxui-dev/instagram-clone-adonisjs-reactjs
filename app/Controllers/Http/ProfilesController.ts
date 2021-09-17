@@ -16,6 +16,7 @@ export default class ProfilesController {
         }
         
         await user.preload('posts')
+        await user.preload('followings')
         await auth.user.preload('followings')
         // return auth.user
 
